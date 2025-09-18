@@ -51,7 +51,7 @@
  }
  
  .botaoapagar {
- grid-column: span 2;
+ grid-column: span 1;
  padding: 20px;
  font-size: 1.2em;
  border: none;
@@ -89,10 +89,15 @@
  <div class="calculadora">
  <input type="text" id="display" readonly>
  <div class="teclado">
+  
  <button class="botaoapagar" onclick="limpar()">C</button>
+ 
  <button class="botao" onclick="apagar()">←</button>
+ <button class="botao operador" onclick="calcularRaiz()">√</button>
+
  <button class="botao operador"
 onclick="adicionarOperador('/')">/</button>
+
 
  <button class="botao" onclick="adicionarNumero(7)">7</button>
  <button class="botao" onclick="adicionarNumero(8)">8</button>
@@ -138,6 +143,19 @@ onclick="adicionarOperador('+')">+</button>
  expressao = expressao.slice(0, -1);
  display.value = expressao;
  }
+ 
+function calcularRaiz() {
+ const numero = parseFloat(display.value);
+ if (!isNaN(numero) && numero >= 0) {
+ const resultado = Math.sqrt(numero);
+ display.value = resultado;
+ expressao = resultado.toString();
+ } else {
+ display.value = 'Erro';
+ expressao = '';
+ }
+}
+
  
  function calcular() {
  try {
